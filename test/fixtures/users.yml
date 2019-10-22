@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   name: MyString
+#   email: MyString
+
+# two:
+#   name: MyString
+#   email: MyString
+
+# →冒頭の$ rails generate model User name:string email:stringに
+# より自動生成されていたテストデータベース用のサンプルデータ
+
+
+# fixtures内で属性の一意性の制限が保たれていない（oneもtwoもMyString）
+# がfixtures/users.ymlのファイルはvalidatesフィルタを通らない為、
+# 今までこの不一意性は不問に付されていたが、
+# [db/migrate/20191019062245_add_index_to_users_email.rb]
+# のファイルにメールアドレスの一意性を強制するため
+# のマイグレーションを定義しrails db:migrateでデータベースに反映
+# した事により、この不一意性が20191019062245_add_index_to_users_email.rbの一意性定義に
+# 抵触してredになっている。
+# ８章までこのファイルは使わないので一旦、中身をコメントアウト。
