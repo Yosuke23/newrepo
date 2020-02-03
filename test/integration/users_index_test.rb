@@ -28,4 +28,31 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
 	   get users_path
 	   assert_select 'a', text: 'DELETE', count: 0
 	  end
+
+	test "Only activated users will be shown on the index page" do #自作
+	get signup_path #サインアップ画面にアクセス
+		post users_path,params: { user: { name: "Example User",
+	                                email: "user@example.com",
+	                                password:    "password",
+	                                password_confirmation: "password" }} #有効な情報でサインアップ
+		user = assigns(:user) # showアクションの@userを呼び出しこのアクションを通過した新規ユーザーを代入
+	assert_not user.activated? # そのユーザーが有効化されていないことをテスト
+	log_in_as(@admin) #管理者でログイン
+	get users_path #indexページにアクセス
+	assert_template 'users/index' #indexページ描画確認
+	assert_select 'a[href=?]', user_path(user),false #indexページに無効ユーザーのshowページリンクが存在しないことを確認
+	end
+
+	test "Return unactivated users to root" do #自作
+	get signup_path #サインアップ画面にアクセス
+		post users_path,params: { user: { name: "Example User",
+	                                email: "user@example.com",
+	                                password:    "password",
+	                                password_confirmation: "password" }} #有効な情報でサインアップ
+		user = assigns(:user) # showアクションの@userを呼び出しこのアクションを通過した新規ユーザーを代入
+	assert_not user.activated? # そのユーザーが有効化されていないことをテスト
+	log_in_as(@admin) #管理者でログイン
+	get user_path(user) #管理者ログイン状態で有効化されていないユーザーのshowページにアクセス
+	assert_redirected_to root_url #showアクションのredirect_to root_url and return unless @user.activated?の処理通りroot_urlにリダイレクトされているかテスト
+	end
 end
