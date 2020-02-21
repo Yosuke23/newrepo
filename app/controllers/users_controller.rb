@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save # 保存の成功をここで扱う。
       @user.send_activation_email #←UserMailer.account_activation(@user).deliver_nowから更新 # ←log_in @userから更新
-      flash[:info] = "Please check your email to  activate your account."#flash[:success] = "Welcome to the Sample App!"から更新
+      flash[:info] = "まだ登録は完了しておりません。お手数ですが#{@user.name}様のメールアドレスに送信したメールで登録を完了させてください。"#flash[:success] = "Welcome to the Sample App!"から更新
       redirect_to root_url #redirect_to @userから更新
                            # redirect_to user_url(@user) # 上記に等価
                            # redirect_to user_url(id: @user.id) # 上記に等価
