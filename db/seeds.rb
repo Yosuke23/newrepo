@@ -23,7 +23,15 @@ users = User.order(:created_at).take(6)
 content = Faker::Lorem.sentence(5)
 users.each { |user| user.microposts.create!(content: content) }
 end
-
+# リレーションシップ
+users = User.all
+user = User.first
+following = users[2..50] # フォローして居るユーザーを定義
+followers = users[3..40] # フォロワーを定義
+following.each { |followed| user.follow(followed) }
+#最初のユーザーにユーザー3からユーザー51までのユーザーをフォローさせる
+followers.each { |follower| follower.follow(user) }
+#→4から41のユーザーに最初のユーザーをフォローさせる
 
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).

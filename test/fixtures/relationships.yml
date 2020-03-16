@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+ follower: michael
+ followed: lana
+
+two:
+ follower: michael
+ followed: malory
+
+three:
+ follower: lana
+ followed: michael
+
+four:
+ follower: archer
+ followed: michael
+
+
+
+# fixtures内では属性の一意性の制限が保たれていない（oneもtwoも）
+# がfixtures/users.ymlのファイルはvalidatesフィルタを通らない為、
+# 今までこの不一意性は不問に付されていたが、
+# [db/migrate/20191019062245_add_index_to_users_email.rb]
+# [20200308025432_create_relationships.rb]
+# のファイルでメールアドレス、:follower_id, :followed_id] の一意性を強制するため
+# のマイグレーションを定義しrails db:migrateでデータベースに反映
+# した事により、この不一意性が20191019062245_add_index_to_users_email.rbの[20200308025432_create_relationships.rb]一意性定義に
+# 抵触してredになるので、無駄なエラーを吐かせないように一旦このファイルはコメントアウト。
