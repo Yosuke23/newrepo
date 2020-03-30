@@ -1,11 +1,14 @@
-  <div class="center jumbotron">
-   <h1>Welcome to the Yosuke's App</h1>
-	  <h2>
-	    This is the home page for the
-	    <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
-	    yosuke's application.
-	  </h2>
-    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  <div class="center jumbotron bgsw">
+  	<script type="text/javascript">
+     jQuery(function($) {
+    $('.bgsw').bgSwitcher({
+        images: ['assets/family1.jpg', 'assets/family2.jpg', 'assets/family3.jpg', 'assets/family4.jpg', 'assets/family5.jpg', 'assets/family6.jpg',],
+        shuffle: "true",
+        interval: 6000,
+        effect: "fade"
+      });
+    });
+    </script>
+   <h1>その一瞬をいつでも、いつまでも...</h1>
+    <%= link_to "新規登録", signup_path, class: "btn btn-lg btn-info" %>
   </div>
-<%= link_to image_tag("rails.png", alt: "Rails logo"), 'http://rubyonrails.org/' %>
-<%#= link_to image_tag("kitten.jpg", alt: "cat images")%>

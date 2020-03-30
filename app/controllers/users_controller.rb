@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers, :show]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
 
@@ -21,7 +21,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save # 保存の成功をここで扱う。
       @user.send_activation_email #←UserMailer.account_activation(@user).deliver_nowから更新 # ←log_in @userから更新
-      flash[:info] = "まだ登録は完了しておりません。お手数ですが#{@user.name}様のメールアドレスに送信したメールで登録を完了させてください。"#flash[:success] = "Welcome to the Sample App!"から更新
+      flash[:info] = "まだ登録は完了しておりません。ご本人様確認のため、noreply@example.comよりご登録いただきました#{@user.email}へメールを送信しました。
+      メール本文のURLをクリックし、本登録をしてください。"
       redirect_to root_url #redirect_to @userから更新
                            # redirect_to user_url(@user) # 上記に等価
                            # redirect_to user_url(id: @user.id) # 上記に等価
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
  
   def update
     if @user.update_attributes(user_params)
-     flash[:success] = "Profile updated"
+     flash[:success] = "登録情報変更完了"
      redirect_to @user    
       # 更新に成功した場合を扱う。成功時のみ
     else
@@ -46,19 +47,19 @@ class UsersController < ApplicationController
 
   def destroy
    User.find(params[:id]).delete
-   flash[:success] = "User deleted"
+   flash[:success] = "削除しました"
    redirect_to users_url
   end
  
   def following
-   @title = "Following"
+   @title = "フォロー"
    @user = User.find(params[:id])
    @users = @user.following.paginate(page: params[:page])
    render 'show_follow'
   end
 
   def followers
-   @title = "Followers"
+   @title = "フォロワー"
    @user = User.find(params[:id])
    @users = @user.followers.paginate(page: params[:page])
    render 'show_follow'

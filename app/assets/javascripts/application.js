@@ -15,4 +15,4 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
-//= require bootstrap.min #追加
+//= require nivo

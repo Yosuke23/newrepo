@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "nivo";
 
 /* mixins, variables, etc. */
 
@@ -11,10 +12,44 @@
 
 $gray-medium-light: #eaeaea;
 
-/* universal */
+
+/*home.html.erb*/
+
+.user_info > h1 {
+  font-weight: bold;
+ }
+
+/*not_logged_in.html.erb*/
+
+.jumbotron {
+  max-width: 100%;
+  height:auto;
+ }
+
+.bgsw {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: -30px;
+  margin-bottom: -10px;
+  height: 460px;
+  }
+
+.jumbotron h1 {
+  font-family: 'Moon';
+  src: font-url('Moon2.0-Bold.otf');
+  font-size:40px;
+  padding: 10%;
+  color: white;
+  text-shadow: 1px 1px 2px gray;
+}
 
 body {
-  padding-top: 60px;
+  font-weight: bold;
+  font-family: 'Moon';
+  src: font-url('Moon2.0-Bold.otf');
+  padding-top: 120px;
+  margin-top: 10px;
 }
 
 section {
@@ -31,6 +66,13 @@ textarea {
     margin-bottom: 10px;
   }
 }
+
+
+/*show.html.erb*/
+
+.show > h1 , h3 {
+  font-weight: bold;
+ }
 
 /* typography */
 
@@ -61,18 +103,47 @@ p {
 
 
 /* header */
+.input-group-btn .btn {
+  font-weight:bold;
+  color: #909090;
+}
+.search-nav {
+  width: 300px;
+  padding-top: 8px;
+}
+
+.navbar-default {
+  border-bottom:none;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+  &:hover {
+    color: #5BC0DE;
+  }
+ }
+
+.navbar-right  {
+  font-weight: bold;
+}
+
+.navbar-fixed-top {
+  background-color:#c2c2c2;
+  }
 
 #logo {
+  font-weight: bold;
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
-  color: red;
-  text-transform: uppercase;
+  font-size: 1.9em;
+  color: white;
+  /*text-shadow: 1px 1px 2px gray;*/
   letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
+  padding-top: 7px;
+  font-family: 'Moon';
+  src: font-url('Moon2.0-Bold.otf');
   &:hover {
-    color: white;
+    text-shadow: 1px 1px 2px #515151;
     text-decoration: none;
   }
 }
@@ -92,16 +163,21 @@ footer {
   }
   small {
     float: left;
+    font-size: 13px;
   }
   ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 15px;
+      float: right;
+      list-style: none;
+    li { 
+       margin: 0 10px;
+       font-size: 13px;
+       float: left;
+       margin-left: 15px;
     }
   }
 }
+
+
 
 /*
 img {
@@ -222,7 +298,7 @@ input {
   .form-control {
     color: $state-danger-text;
   }
-}
+} 
 
 /*forms*/
 

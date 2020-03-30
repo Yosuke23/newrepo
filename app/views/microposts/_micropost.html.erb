@@ -8,9 +8,9 @@
  <%= image_tag micropost.picture.url if micropost.picture? %>
  </span>
  <span class="timestamp">
- Posted <%= time_ago_in_words(micropost.created_at) %>ago.
+  <%= time_ago_in_words(micropost.created_at) %>前に投稿
   <% if current_user?(micropost.user) %>
-   <%= link_to "DELETE", micropost, method: :delete, data: { confirm: "マジで消すよ？" } %>
+   <%= link_to "削除", micropost, method: :delete, data: { confirm: "本当に削除しますか？" } %>
   <% end %>
  </span>
 </li>
