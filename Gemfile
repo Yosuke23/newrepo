@@ -19,7 +19,6 @@ gem 'nivo-rails'
 gem 'jquery-bgswitcher-rails'
 gem 'omniauth'
 gem 'omniauth-twitter'
-gem 'devise'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
