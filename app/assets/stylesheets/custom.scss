@@ -176,8 +176,6 @@ footer {
   }
 }
 
-
-
 /*
 img {
   display: none;
@@ -191,6 +189,23 @@ img {
  width: 100%;
  margin-top: 45px;
  @include box-sizing;
+}
+
+.footer-menu > h1 {
+  font-weight: bold;
+  font-size:30px;
+  margin-right: auto;
+  margin-top: -20px;
+  margin-bottom: 40px;
+}
+
+.about-menu > p {
+  line-height: 30px;
+}
+#name {
+  margin-top: 25px;
+  line-height: 30px;
+  font-size: 15px;
 }
 
 /* sidebar */
