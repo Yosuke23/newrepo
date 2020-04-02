@@ -9,6 +9,15 @@
  box-sizing: border-box;
 }
 
+@media(max-width: 768px){
+    .footer{display:none; }
+}
+
+@media(min-width: 768px){
+    .bottom-menu{display:none; }
+}
+
+
 $gray-medium-light: #eaeaea;
 
 
@@ -152,14 +161,9 @@ p {
 /*************************************/
 /* footerスマホレスポンシブ */
 /*PC表示の際はボトムメニューは表示しない*/
-@media(min-width: 768px){
-    .bottom-menu{display:none; }
-}
-@media(max-width: 768px){
-    .footer{display:none; }
-}
 
-ul.bottom-menu {
+
+  .bottom-menu {
     position: fixed;
     left:0;
     bottom:0;
