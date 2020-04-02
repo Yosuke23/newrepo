@@ -5,13 +5,13 @@
   </div>
   <%= f.submit "投稿", class: "btn btn-primary" %>
   <span class="picture">
-   <%= f.file_field :picture, accept: 'image/jpeg, image/gif, image/png' %>
+   <%= f.file_field :picture, accept: 'image/jpeg, image/gif, image/png, video/*' %>
   </span>
 <% end %>
 
 <script type="text/javascript">
  $('#micropost_picture').bind('change', function(){ var size_in_megabytes = this.file[0].size/1024/1024;
- if (size_in_megabytes > 5) {
+ if (size_in_megabytes > 30) {
  alert('Maximum file size is 5MB. Please choose a smaller file');
 }
 });
