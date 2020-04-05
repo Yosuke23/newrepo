@@ -104,6 +104,9 @@ class User < ApplicationRecord
   # 以下3点のメソッドでSNS認証用のユーザー生成機能の追加
   def create_from_auth!(auth)
     #authの情報を元にユーザー生成の処理を記述
+    auth['name']
+    auth['uid']
+    auth['provider']
     auth["credentials"]#にアクセストークン、シークレットなどの情報が入ってます。
     auth["info"]["email"]#にユーザーのメールアドレスが入ってます。(Twitterはnil)
   end
