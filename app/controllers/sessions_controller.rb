@@ -10,12 +10,9 @@ def create
 if auth.present?
 unless @auth = User.find_from_auth(auth)
 　@auth = User.create_from_auth(auth)
-　else
-  redirect_to root_url
 end
 　user = @auth.user
 　redirect_back_or user
-
   else
        @user = User.find_by(email: params[:session][:email].downcase)              # paramsハッシュで受け取ったemail値を小文字化し、email属性に渡してUserモデルから同じemailの値のUserを探して、user変数に代入
     if @user && @user.authenticate(params[:session][:password]) # user変数がデータベースに存在し、なおかつparamsハッシュで受け取ったpassword値と、userのemail値が同じ(パスワードとメールアドレスが同じ値であれば)true
