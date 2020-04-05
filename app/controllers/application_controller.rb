@@ -9,7 +9,7 @@ private
       unless logged_in?
         store_location
         flash[:danger] = "ログインしてください"
-        redirect_to login_url
+        redirect_to info_url
       end
     end
 

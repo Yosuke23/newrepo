@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get  '/privacy',    to: 'static_pages#privacy'
   get  '/about',   to: 'static_pages#about'
   get  '/terms', to: 'static_pages#terms'
+  get  '/info', to: 'static_pages#info'
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
   #↑なぜかチュートリアルで削除されてる?
@@ -24,4 +25,5 @@ Rails.application.routes.draw do
   resources :microposts, only:      [:create, :destroy]
   resources :relationships, only:    [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
 end

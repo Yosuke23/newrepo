@@ -23,7 +23,7 @@ class User < ApplicationRecord
     where("users.name LIKE :keyword",
      keyword: "%#{sanitize_sql_like(keyword)}%") if keyword.present? 
   }
-
+  
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -99,6 +99,22 @@ class User < ApplicationRecord
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # 以下3点のメソッドでSNS認証用のユーザー生成機能の追加
+  def create_from_auth!(auth)
+    #authの情報を元にユーザー生成の処理を記述
+    #auth["credentials"]にアクセストークン、シークレットなどの情報が入ってます。
+    #auth["info"]["email"]にユーザーのメールアドレスが入ってます。(Twitterはnil)
+  end
+
+  def find_from_auth(auth)
+   find_by_provider_and_uid(auth['provider'], auth['uid'])
+  end
+
+  def create_from_auth(auth, user = nil)
+   user ||= User.create_from_auth!(auth)
+   User.create!(:user => user, :uid => auth['uid'], :provider => auth['provider'])
   end
 
 private

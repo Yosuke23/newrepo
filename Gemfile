@@ -17,7 +17,9 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
 gem 'jquery-bgswitcher-rails'
 gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

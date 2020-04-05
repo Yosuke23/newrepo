@@ -457,3 +457,83 @@ span.picture {
     border: 0;
   }
 }
+
+
+
+/* info.html.erb 現状FB、メールログイン用のボタンのみTwitterAPI来たら追加*/
+/* facebook-button */
+.social {
+  text-align: center;
+}
+
+.facebook {
+  background-color: #2e4a88;
+  //margin-left: 20px;
+  display: inline-block;
+  position: relative;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  border-radius: 5px;
+  padding: 8px 80px;
+  max-width: 400px;
+  width: 100%;
+}
+.facebook:hover {
+  background-color: #39558f;
+  color: white;
+  text-decoration: none;
+}
+
+/* mail-login-button */
+.u-login {
+  margin-top: 20px;
+  text-align: center;
+}
+.mail-login {
+  background-color: #337AB7;
+  //margin-left: 20px;
+  display: inline-block;
+  position: relative;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  border-radius: 5px;
+  padding: 8px 80px;
+  max-width: 400px;
+  width: 100%;
+}
+.mail-login:hover {
+  background-color: #2b6aa1;
+  color: white;
+  text-decoration: none;
+}
+
+/* info.html.erb .login-info */
+.login-info {
+  margin-top:20px;
+  text-align: center;
+  font-size: 14px;
+  
+}
+
+/* new.html.erb login-button */
+.login-button {
+  font-weight: bold;
+}
+
+/* 「新規登録」「ログイン」のスタイリング */
+/* users/new.html.erb static_pages/new.html.erb 共通クラス */
+
+.page-title {
+  overflow: hidden; /* flashメッセージが出た時にログイン文字にかぶるのをふせぐ*/
+  margin-left: -30px;
+  font-size: 12px;
+  margin-top: -55px;
+}

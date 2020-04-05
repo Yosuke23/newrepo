@@ -1,0 +1,13 @@
+<div class="page-title">
+<h1>ログイン</h1>
+</div>
+<div class="social">
+ <%= link_to 'Facebookでログイン', '/auth/facebook', class: "facebook" %>
+</div>
+<div class="u-login">
+ <%= link_to 'メールアドレスでログイン', login_path, class: "mail-login" %>
+</div>
+
+<div class="login-info">
+	<p><%= link_to "利用規約", terms_path %>及び<%= link_to "プライバシーポリシー", privacy_path %>に<br>同意の上ご利用ください</p>
+</div>
