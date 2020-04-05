@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
 
 def facebook_login
-  @user = User.from_omniauth(request.env["omniauth.auth"])
+  @user = User.from_omniauth(request.env["omniauth.auth"]['info']['email'])
     result = @user.save(context: :facebook_login)
     if result
       log_in @user
