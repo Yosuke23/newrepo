@@ -6,15 +6,12 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     @user = users(:michael)
   end
 
-
     test "Test on SNS login function" do
     get info_path
     assert_template 'static_pages/info'
     assert_select "a[href=?]", '/auth/facebook'
     assert_select "a[href=?]", login_path
     end
-
-
 
     test "login with invalid information" do
     get login_path #1
