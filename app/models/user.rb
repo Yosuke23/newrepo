@@ -3,6 +3,7 @@ class User < ApplicationRecord
 	before_save :downcase_email
   before_create :create_activation_digest
 	validates :name, presence: true, length: { maximum: 50 }
+  validates :password, presence: true, length: {minimum: 8}, on: :facebook_login
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 	validates :email, presence: true, length: { maximum: 255 },
 		format: { with: VALID_EMAIL_REGEX },
@@ -119,6 +120,19 @@ class User < ApplicationRecord
    user ||= User.create_from_auth!(auth)
    User.create!(:user => user, :uid => auth['uid'], :provider => auth['provider'])
   end
+
+  def self.from_omniauth(auth)
+  user = User.where('email = ?', auth.info.email).first
+  if user.blank?
+     user = User.new
+  end
+  user.uid   = auth.uid
+  user.username  = auth.info.name
+  user.email = auth.info.email
+  user.oauth_token = auth.credentials.token
+  user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+  user
+end
 
 private
 
