@@ -25,7 +25,5 @@ Rails.application.routes.draw do
   resources :microposts, only:      [:create, :destroy]
   resources :relationships, only:    [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  #match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
-  get '/auth/failure',               to: 'users#auth_failure',        as: :auth_failure
-  get '/auth/:provider/callback',    to: 'sessions#facebook_login',      as: :auth_callback
+  match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
 end
