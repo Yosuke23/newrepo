@@ -531,8 +531,11 @@ span.picture {
 /* 「新規登録」「ログイン」のスタイリング */
 /* users/new.html.erb static_pages/new.html.erb 共通クラス */
 
-.page-title {
-  overflow: hidden; /* flashメッセージが出た時にログイン文字にかぶるのをふせぐ*/
+.flash-margin {
+  margin-bottom: 65px;
+}
+.page-title  {
+  overflow: hidden;
   margin-left: -30px;
   font-size: 12px;
   margin-top: -55px;
