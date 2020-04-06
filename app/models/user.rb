@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-  
+  has_many :authorizations
   scope :search_by_keyword, -> (keyword) {
     where("users.name LIKE :keyword",
      keyword: "%#{sanitize_sql_like(keyword)}%") if keyword.present? 
@@ -102,22 +102,13 @@ class User < ApplicationRecord
   end
 
   # 以下3点のメソッドでSNS認証用のユーザー生成機能の追加
-  def self.create_from_auth!(auth)
+  def User.create_from_auth!(auth)
     #authの情報を元にユーザー生成の処理を記述
     User.create(:name => auth['info']['name'], :email => auth['info']['email'], :password => auth['info']['password'])
     #auth["credentials"]#にアクセストークン、シークレットなどの情報が入ってます。
     #auth["info"]["email"]#にユーザーのメールアドレスが入ってます。(Twitterはnil)
   end
 
-  def self.find_from_auth(auth)
-   find_by_provider_and_uid(auth['provider'], auth['uid'])
-  end
-
-  def self.create_from_auth(auth, user = nil)
-   user ||= User.create_from_auth!(auth)
-   User.create!(:user => user, :uid => auth['uid'], :provider => auth['provider'])
-  end
-#ActiveModel::UnknownAttributeError (unknown attribute 'user' for Userのため:name => auth['info']['name'],をUser.create!から除外
 private
 
 	 # メールアドレスをすべて小文字にする
