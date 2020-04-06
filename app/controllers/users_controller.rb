@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  #before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers, :show]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers, :show]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
 
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
-    #redirect_to root_url and return unless @user.activated?
+    redirect_to root_url and return unless @user.activated?
   end
 
   def new
