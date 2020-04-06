@@ -3,7 +3,6 @@ class User < ApplicationRecord
 	before_save :downcase_email
   before_create :create_activation_digest
 	validates :name, presence: true, length: { maximum: 50 }
-  validates :password, presence: true, length: {minimum: 8}, on: :facebook_login
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 	validates :email, presence: true, length: { maximum: 255 },
 		format: { with: VALID_EMAIL_REGEX },
@@ -105,7 +104,7 @@ class User < ApplicationRecord
   # 以下3点のメソッドでSNS認証用のユーザー生成機能の追加
   def self.create_from_auth!(auth)
     #authの情報を元にユーザー生成の処理を記述
-    User.create(:name => auth['info']['name'], :email => auth['info']['email'])
+    User.create(:name => auth['info']['name'], :email => auth['info']['email'], :password => auth['info']['password'],
     #auth["credentials"]#にアクセストークン、シークレットなどの情報が入ってます。
     #auth["info"]["email"]#にユーザーのメールアドレスが入ってます。(Twitterはnil)
   end
@@ -116,11 +115,9 @@ class User < ApplicationRecord
 
   def self.create_from_auth(auth, user = nil)
    user ||= User.create_from_auth!(auth)
-   User.create!(:user => user, :uid => auth['uid'], :provider => auth['provider'])
+   User.create!(:uid => auth['uid'], :provider => auth['provider'])
   end
-
-
-
+#ActiveModel::UnknownAttributeError (unknown attribute 'user' for Userのため:name => auth['info']['name'],をUser.create!から除外
 private
 
 	 # メールアドレスをすべて小文字にする
