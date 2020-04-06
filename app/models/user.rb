@@ -115,7 +115,7 @@ class User < ApplicationRecord
 
   def self.create_from_auth(auth, user = nil)
    user ||= User.create_from_auth!(auth)
-   User.create!(:uid => auth['uid'], :provider => auth['provider'])
+   User.create!(:user => user, :uid => auth['uid'], :provider => auth['provider'])
   end
 #ActiveModel::UnknownAttributeError (unknown attribute 'user' for Userのため:name => auth['info']['name'],をUser.create!から除外
 private
