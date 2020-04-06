@@ -103,7 +103,7 @@ class User < ApplicationRecord
 
   # 以下3点のメソッドでSNS認証用のユーザー生成機能の追加
   def User.create_from_auth!(auth)
-    token = [*"a".."z", *"A".."Z", *0..9].sample(8)*"".to_s,
+    token = User.new_token
     digest = User.digest(token)
     User.create!(:name => auth['info']['name'], :email => auth['info']['email'], :uid => auth['uid'], :provider => auth['provider'], :oauth_token => auth["credentials"], :password_digest => digest, :activated => true)
     #authの情報を元にユーザー生成の処理を記述
