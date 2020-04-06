@@ -105,7 +105,7 @@ class User < ApplicationRecord
   # 以下3点のメソッドでSNS認証用のユーザー生成機能の追加
   def self.create_from_auth!(auth)
     #authの情報を元にユーザー生成の処理を記述
-    create(:name => auth['info']['name'], :email => auth['info']['email'], :password => [*"a".."z", *0..9].sample(8)*"" )
+    User.create(:name => auth['info']['name'], :email => auth['info']['email'])
     #auth["credentials"]#にアクセストークン、シークレットなどの情報が入ってます。
     #auth["info"]["email"]#にユーザーのメールアドレスが入ってます。(Twitterはnil)
   end
@@ -118,6 +118,7 @@ class User < ApplicationRecord
    user ||= User.create_from_auth!(auth)
    User.create!(:user => user, :uid => auth['uid'], :provider => auth['provider'])
   end
+
 
 
 private
