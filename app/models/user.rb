@@ -17,7 +17,7 @@ class User < ApplicationRecord
                                    dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true,  on: :facebook_login
   has_many :authorizations
   scope :search_by_keyword, -> (keyword) {
     where("users.name LIKE :keyword",
@@ -103,6 +103,7 @@ class User < ApplicationRecord
 
   # 以下3点のメソッドでSNS認証用のユーザー生成機能の追加
   def User.create_from_auth!(auth)
+    User.create!(:name => auth['info']['name'], :email => auth['info']['email'], :uid => auth['uid'], :provider => auth['provider'], :auth_tokenauth => auth["credentials"], :password_digest => [*"a".."z", *0..9].sample(8)*"".to_s)
     #authの情報を元にユーザー生成の処理を記述
     #User.create(:name => auth['info']['name'], :email => auth['info']['email'], :password => auth['info']['password'])
     #auth["credentials"]#にアクセストークン、シークレットなどの情報が入ってます。
