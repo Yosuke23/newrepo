@@ -10,7 +10,7 @@
     <%= image_tag micropost.picture.url(:thumb) %>
    <% else %>
    <div class="video-content">
-    <%= video_tag micropost.picture.url, width: "50%", height: "50%", controls: true, autobuffer: true, playsinline: true %>
+    <%= video_tag micropost.picture.url, width: "50%", height: "50%", controls: true, autobuffer: true, preload: 'metadata', playsinline: true %>
     </div>
    <% end %>
   <% end %>
