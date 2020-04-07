@@ -9,12 +9,13 @@
    <% if micropost.picture.file.content_type.include?('image/') %>
     <%= image_tag micropost.picture.url(:thumb) %>
    <% else %>
-   <div class="video-content">
+    </span>
+    <div class="video-content">
     <%= video_tag micropost.picture.url, width: "50%", height: "50%", controls: true, autobuffer: true, autoplay: true, muted: true,  playsinline: true %>
     </div>
    <% end %>
   <% end %>
- </span>
+
 
  <span class="timestamp">
   <%= time_ago_in_words(micropost.created_at) %>前に投稿
