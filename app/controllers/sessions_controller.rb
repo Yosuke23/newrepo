@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
               @auth = Authorization.create_from_auth(auth)
        end
        user = @auth.user
+         log_in_for_sns user
          redirect_back_or user  
    else # 以下通常のログイン機能
          @user = User.find_by(email: params[:session][:email].downcase)              # paramsハッシュで受け取ったemail値を小文字化し、email属性に渡してUserモデルから同じemailの値のUserを探して、user変数に代入
