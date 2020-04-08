@@ -4,10 +4,6 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
-  def log_in_for_sns(user)
-    session[:user_id] = user[:user_id]
-  end
-
   # ユーザーのセッションを永続的にする
   def remember(user)
     user.remember
