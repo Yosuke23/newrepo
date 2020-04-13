@@ -21,6 +21,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'dotenv-rails'
 
+
 group :development, :test do
   gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
@@ -41,11 +42,15 @@ group :test do
   gem 'guard-minitest',           '2.4.4'
 end
 
+group :production, :staging do
+  gem 'unicorn'
+end
+
 group :production do
-  gem 'pg', '0.20.0'
-  gem 'fog'
+  #gem 'pg', '0.20.0'
+  gem 'mysql2'
   gem 'rails_12factor'
-  gem 'fog-aws', group: :production
+  gem 'fog-aws'
 end
 
 # Windows環境ではtzinfo-dataというgemを含める必要があります
