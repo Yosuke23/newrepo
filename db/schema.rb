@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20200406094209) do
 
-  create_table "authorizations", force: :cascade do |t|
+  create_table "authorizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "provider"
     t.string "uid"
     t.integer "user_id"
@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 20200406094209) do
     t.index ["provider", "uid"], name: "index_authorizations_on_provider_and_uid", unique: true
   end
 
-  create_table "microposts", force: :cascade do |t|
+  create_table "microposts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20200406094209) do
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
-  create_table "relationships", force: :cascade do |t|
+  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "follower_id"
     t.integer "followed_id"
     t.datetime "created_at", null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20200406094209) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
@@ -66,4 +66,5 @@ ActiveRecord::Schema.define(version: 20200406094209) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "microposts", "users"
 end
