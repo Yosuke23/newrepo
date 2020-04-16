@@ -66,12 +66,12 @@ Rails.application.configure do
   host = 'http://18.181.3.241'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
+    :address        => 'smtp.gmail.com',
     :port           => '587',
     :authentication => :plain,
-    :user_name      => ENV['SENDGRID_NAME'],
-    :password       => ENV['SENDGRID_PW'],
-    :domain         => 'heroku.com',
+    :user_name      => ENV['SENDGRID_NAME_AWS'],
+    :password       => ENV['SENDGRID_PW_AWS'],
+    :domain         => 'gmail.com',
     :enable_starttls_auto => true
   }
 
