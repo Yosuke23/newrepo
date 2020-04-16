@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save # 保存の成功をここで扱う。
       @user.send_activation_email #←UserMailer.account_activation(@user).deliver_nowから更新 # ←log_in @userから更新
-      flash[:info] = "まだ登録は完了しておりません。ご本人様確認のため、noreply@example.comよりご登録いただきました#{@user.email}へメールを送信しました。
+      flash[:info] = "まだ登録は完了しておりません。ご本人様確認のため、yosuke4123@gmail.comよりご登録いただきました#{@user.email}へメールを送信しました。
       メール本文のURLをクリックし、本登録をしてください。"
       redirect_to root_url
     else
