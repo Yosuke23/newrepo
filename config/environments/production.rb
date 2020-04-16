@@ -71,7 +71,7 @@ Rails.application.configure do
     :authentication => :plain,
     :user_name      => ENV['SENDGRID_NAME_AWS'],
     :password       => ENV['SENDGRID_PW_AWS'],
-    :domain         => 'gmail.com',
+    :domain         => 'smtp.gmail.com',
     :enable_starttls_auto => true
   }
 
