@@ -21,7 +21,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'dotenv-rails'
 gem 'fog-core', '2.1.0'
-
+gem 'mail-iso-2022-jp'
 
 group :development, :test do
   gem 'mysql2', '0.5.3'
